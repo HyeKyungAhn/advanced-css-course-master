@@ -1,0 +1,159 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    //padding: 15rem 0;
+    background-color: rgba($color-black, .9);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    -moz-transition: opacity .3s;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    &__content {
+        @include absCenter;
+        width: 75%;
+        //padding: 5rem;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        -moz-transform: translate(-50%, -50%) scale(.25);
+        -webkit-transform: translate(-50%, -50%) scale(.25);
+        transform: translate(-50%, -50%) scale(.25);
+        -moz-transition: all .5s .2s;
+        -webkit-transition: all .5s .2s;
+        transition: all .5s .2s;
+
+
+        @include respond(phone) {
+            max-width: 80vh;
+        }
+    }
+
+    &__left {
+        width: 33.333334%;
+        display: table-cell;
+
+        @include respond(tab-land) {
+            width: 100%;
+            display: block;
+            margin: 0;
+        }
+
+        @include respond(phone) {
+            width: 0;
+            display: none;
+        }
+    }
+
+    @include respond(tab-land) {
+        &__left-left,
+        &__left-right {
+            display: inline-block;
+            width: 50%;
+            overflow: hidden;
+            border: none;
+        }
+    }
+
+    &__right {
+        width: 66.6666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+        font-size: 0;
+
+        @include respond(tab-land) {
+            width: 100%;
+            display: block;
+        }
+
+        @include respond(phone) {
+            width: 100%;
+            text-align: center;
+            background-size: cover;
+            background-image: linear-gradient(to right,
+            rgba($color-white, .9) 0%,
+            rgba($color-white, .9) 100%),
+            url(../img/nat-8.jpg);
+        }
+    }
+
+    &__img {
+        display: block;
+        height: 20.5rem;
+        width: 100%;
+
+        @supports (object-fit: cover) {
+        object-fit: cover;
+        }
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        column-count: 2;
+        column-gap: 4rem; // default value = 1em (1em = 14px 현재 요소의 font-size)
+        column-rule: 1px solid $color-grey-light-2;
+
+        -webkit-hyphens: auto;
+        hyphens: auto;
+
+        @include respond(tab-port) {
+            text-align: justify;
+        }
+
+        @include respond(phone) {
+            text-align: initial;
+            column-count: auto;
+            overflow: scroll;
+            height: 17rem;
+        }
+    }
+
+    //open states
+    &:target &__content {
+        opacity: 1;
+        -moz-transform: translate(-50%, -50%) scale(1);
+        -webkit-transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute; 
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            @include transition-all-2s;
+            line-height: 1;
+        }    
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}

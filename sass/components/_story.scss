@@ -1,0 +1,106 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  background-color: rgba($color-white, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  -moz-transform: skewX(-12deg);
+  -webkit-transform: skewX(-12deg);
+  transform: skewX(-12deg);
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+
+  @include respond(phone) {
+    -moz-transform: skewX(0);
+    -webkit-transform: skewX(0);
+    transform: skewX(0);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    -moz-transform: translateX(-3rem) skewX(12deg);
+    -webkit-transform: translateX(-3rem) skewX(12deg);
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      -webkit-shape-outside: circle(50% at 50% 50%);
+      shape-outside: circle(50% at 50% 50%);
+      border-radius: none;
+    }
+
+    @include respond(phone) {
+      -webkit-transform: translateX(-3rem) skewX(0);
+      transform: translateX(-3rem) skewX(0);
+    }
+  }
+
+  &__img {
+    height: 100%;
+    -webkit-transform: translateX(-4rem) scale(1.4);
+    transform: translateX(-4rem) scale(1.4);
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    backface-visibility: hidden;
+  }
+
+  &__text {
+    -webkit-transform: skewX(12deg);
+    transform: skewX(12deg);
+
+    @include respond(phone) {
+      -webkit-transform: skewX(0);
+      transform: skewX(0);
+    }
+  }
+
+  &__caption {
+    @include absCenter;
+    top: 80%;
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s; 
+
+  
+    @supports (backface-visibility: hidden) or (-webkit-backface-visibility: hidden) {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    } 
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    top: 52%;
+  }
+
+  &:hover &__img {
+    -moz-transform: translateX(-4rem) scale(1);
+    -webkit-transform: translateX(-4rem) scale(1);
+    transform: translateX(-4rem) scale(1);
+    
+
+    @supports (filter: blur(0)) or (-webkit-filter: blur(0)) {
+      -webkit-filter: blur(3px) brightness(80%);
+      filter: blur(3px) brightness(80%);
+    }
+  }
+}
