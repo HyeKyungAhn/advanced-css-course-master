@@ -1,0 +1,116 @@
+.btn {
+    &,
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding:1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        @include transition-all-2s;
+        position: relative;
+        font-size: $default-font-size;
+
+        //change for the <button> element
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+        -moz-transform: translateY(-0.3rem);
+        -webkit-transform: translateY(-0.3rem);
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+        &::after {
+            -moz-transform: scale(1.4, 1.6);
+            -webkit-transform: scale(1.4, 1.6);
+            transform: scale(1.4, 1.6);
+            opacity: 0;
+        }
+        
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+        -moz-transform: translateY(-.1rem);
+        -webkit-transform: translateY(-.1rem);
+        transform: translateY(-.1rem);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        
+        }
+    }
+    
+    &::after { 
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        @include transition-all-4s;
+    }
+
+    &--animated {
+        -moz-animation: moveUp .5s ease-out .75s;
+        -webkit-animation: moveUp .5s ease-out .75s;
+        animation: moveUp .5s ease-out .75s;
+        -moz-animation-fill-mode: backwards;
+        -webkit-animation-fill-mode: backwards;
+        animation-fill-mode: backwards;
+    }
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        border-radius: 2px;
+        padding: 3px;
+        @include transition-all-2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        -moz-transform: translateY(-2px);
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1.5rem rgba($color-black, .25);
+        -moz-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+
